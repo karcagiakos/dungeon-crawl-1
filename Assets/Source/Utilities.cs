@@ -12,6 +12,14 @@ namespace DungeonCrawl
 
     public static class Utilities
     {
+        public static Direction Direction
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
         public static (int x, int y) ToVector(this Direction dir)
         {
             switch (dir)
