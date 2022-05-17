@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -41,6 +42,8 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Oh no, I'm dead!");
         }
 
+
+        public static Dictionary<object, int> Inventory { get; set; }
         public override int DefaultSpriteId => 24;
         public override string DefaultName => "Player";
     }
