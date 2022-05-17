@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assets.Source.Core;
+﻿using Assets.Source.Core;
 using DungeonCrawl.Actors;
 using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
+using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Source.Actors.Static.Items
 {
-    public class YellowKey : Actor
+    public class YellowKey : Item
     {
         public override int DefaultSpriteId => 559;
         public override string DefaultName => "YellowKey";
@@ -20,32 +17,6 @@ namespace Assets.Source.Actors.Static.Items
         public override bool OnCollision(Actor anotherActor)
         {
             UserInterface.Singleton.SetText("Press E to pick up", UserInterface.TextPosition.BottomRight);
-
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                // Move up
-                Debug.Log("hahó");
-            }
-
-            if (!Player.Inventory.ContainsKey(this))
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Debug.Log("itt vagyok");
-                    Player.PickUpItem(this, 1);
-                    ActorManager.Singleton.DestroyActor(this);
-                    UserInterface.Singleton.SetText(String.Empty, UserInterface.TextPosition.BottomRight);
-                    Player.Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
-                    return true;
-                }
-
-            }
-            else
-            {
-                Player.Inventory[this]++;
-                return true;
-            }
             return true;
         }
 

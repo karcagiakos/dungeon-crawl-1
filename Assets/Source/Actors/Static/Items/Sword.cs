@@ -7,7 +7,7 @@ using DungeonCrawl.Actors;
 
 namespace Assets.Source.Actors.Static.Items
 {
-    public class Sword : Actor
+    public class Sword : Item
     {
 
         public override int DefaultSpriteId => 417;
