@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Source.Core;
 using DungeonCrawl.Actors;
 using DungeonCrawl.Actors.Characters;
+using DungeonCrawl.Core;
+using UnityEngine;
 
 namespace Assets.Source.Actors.Static.Items
 {
@@ -14,26 +17,21 @@ namespace Assets.Source.Actors.Static.Items
         public override string DefaultName => "YellowKey";
         public override int Z => -1;
 
-        //public static void PickUpItem()
-
-
         public override bool OnCollision(Actor anotherActor)
         {
-            //if (anotherActor is Player)
-            //{
-            //    if (!Player.Inventory.ContainsKey(this))
-            //    {
-            //        Player.Inventory.Add(this, 1);
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        Player.Inventory[this]++;
-            //        return true;
-            //    }
+            if (!Player.Inventory.ContainsKey(this))
+            {
+                Player.PickUpItem(this, 1);
+                ActorManager.Singleton.DestroyActor(this);
+                Player.Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
+                return true;
+            }
+            else
+            {
+                Player.Inventory[this]++;
+                return true;
+            }
 
-            //}
-            return true;
         }
 
 
