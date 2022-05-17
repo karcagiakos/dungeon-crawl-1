@@ -66,6 +66,10 @@ namespace DungeonCrawl.Core
                     ActorManager.Singleton.Spawn<YellowKey>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
                     break;
+                case 'S':
+                    ActorManager.Singleton.Spawn<Sword>(position);
+                    ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
