@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{2BB4C944-2642-29D7-AD9C-EC364F74C2DD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -69,6 +68,8 @@
     <Compile Include="Assets\Source\Utilities.cs" />
     <Compile Include="Assets\Source\Core\GameManager.cs" />
     <Compile Include="Assets\Source\Core\ActorManager.cs" />
+    <Compile Include="Assets\Source\Actors\Static\Items\Sword.cs" />
+    <Compile Include="Assets\Source\Actors\Static\Items\Key.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -93,7 +94,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Resources\map_1.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
-    <None Include="UML.cd" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
