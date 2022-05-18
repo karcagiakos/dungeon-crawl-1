@@ -7,7 +7,7 @@ using DungeonCrawl.Actors;
 
 namespace Assets.Source.Actors.Static.Items
 {
-    public class Item : Actor
+    public abstract class Item : Actor
     {
         public override int DefaultSpriteId { get; }
         public override string DefaultName { get; }
@@ -16,5 +16,6 @@ namespace Assets.Source.Actors.Static.Items
         {
             return this.MemberwiseClone();
         }
+
     }
 }

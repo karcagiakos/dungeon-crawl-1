@@ -1,4 +1,8 @@
-﻿using TMPro;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Source.Core
@@ -50,5 +54,20 @@ namespace Assets.Source.Core
         {
             _textComponents[(int)textPosition].text = text;
         }
+
+        public void DisplayInventory(Dictionary<string, object> inventory)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Inventory");
+            foreach (var item in inventory)
+            {
+                sb.AppendLine(item.Key + item.Value.Owned);
+            }
+
+            SetText(sb.ToString(), TextPosition.TopLeft);
+
+
+        }
+
     }
 }

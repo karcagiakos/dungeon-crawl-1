@@ -49,7 +49,15 @@ namespace DungeonCrawl.Actors.Characters
 
             if (deltaTime > 0)
             {
-                UserInterface.Singleton.SetText("Ez a inventory", UserInterface.TextPosition.TopLeft);
+                if (Inventory.Count == 0)
+                {
+                    UserInterface.Singleton.SetText("Inventory", UserInterface.TextPosition.TopLeft);
+                }
+                else
+                {
+
+                    UserInterface.Singleton.DisplayInventory(Inventory);
+                }
             }
         }
 
