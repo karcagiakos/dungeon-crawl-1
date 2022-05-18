@@ -14,6 +14,21 @@ namespace DungeonCrawl.Actors.Characters
 {
     public class Player : Character
     {
+        public static Dictionary<string, int> Inventory { get; set; } = new Dictionary<string, int>();
+        public override int DefaultSpriteId => 24;
+        public override string DefaultName => "Player";
+        public static int WeaponDamage { get; set; } = 0;
+
+        public Player()
+        {
+            SetHp(100);
+            SetDamage(WeaponDamage);
+        }
+
+
+
+
+
         protected override void OnUpdate(float deltaTime)
         {
             if (Input.GetKeyDown(KeyCode.W))
@@ -43,16 +58,17 @@ namespace DungeonCrawl.Actors.Characters
             if (Input.GetKeyDown(KeyCode.E))
             {
                 (int x, int y) currentPosition = (Position.x, Position.y);
-                PickUpItem(ActorManager.Singleton.GetActorAt<YellowKey>(currentPosition));
+                PickUpItem(ActorManager.Singleton.GetActorAt<Item>(currentPosition));
                 Debug.Log(currentPosition);
             }
 
             if (deltaTime > 0)
             {
+                UserInterface.Singleton.SetText("Health: " + Health, UserInterface.TextPosition.BottomLeft);
 
                 if (Inventory is null)
                 {
-                    UserInterface.Singleton.SetText("Inventory", UserInterface.TextPosition.TopLeft);
+                    UserInterface.Singleton.SetText("Inventory:", UserInterface.TextPosition.TopLeft);
                 }
                 if (Inventory is not null)
                 {
@@ -71,8 +87,17 @@ namespace DungeonCrawl.Actors.Characters
             Debug.Log("Oh no, I'm dead!");
         }
 
-        public static void PickUpItem(Item item)
+        public void PickUpItem(Item item)
         {
+            if (WeaponDamage == 0)
+            {
+                WeaponDamage = item.Damage;
+            }
+            else if (WeaponDamage < item.Damage)
+            {
+                WeaponDamage = item.Damage;
+            }
+
             if (!Inventory.ContainsKey(item.DefaultName))
             {
                 //var pickedItem = item.Clone();
@@ -98,11 +123,5 @@ namespace DungeonCrawl.Actors.Characters
 
 
 
-        /// <summary>
-        /// Ennek listának kellene lennie
-        /// </summary>
-        public static Dictionary<string, int> Inventory { get; set; } = new Dictionary<string, int>();
-        public override int DefaultSpriteId => 24;
-        public override string DefaultName => "Player";
     }
 }

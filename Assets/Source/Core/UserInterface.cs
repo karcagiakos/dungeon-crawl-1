@@ -58,10 +58,10 @@ namespace Assets.Source.Core
         public void DisplayInventory(Dictionary<string, int> inventory)
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Inventory");
+            sb.AppendLine("Inventory:");
             foreach (var item in inventory)
             {
-                sb.AppendLine(item.Key + "-" + item.Value);
+                sb.AppendLine(item.Key + " - " + item.Value);
             }
 
             SetText(sb.ToString(), TextPosition.TopLeft);

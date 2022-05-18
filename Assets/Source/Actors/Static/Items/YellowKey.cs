@@ -15,13 +15,6 @@ namespace Assets.Source.Actors.Static.Items
         public override int Owned { get; set; } = 1;
         public override int Z => -1;
 
-        public override bool OnCollision(Actor anotherActor)
-        {
-            UserInterface.Singleton.SetText("Press E to pick up", UserInterface.TextPosition.BottomRight);
-            return true;
-        }
-
-
 
     }
 }
