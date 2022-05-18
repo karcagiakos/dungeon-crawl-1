@@ -46,6 +46,11 @@ namespace DungeonCrawl.Actors.Characters
                 PickUpItem(ActorManager.Singleton.GetActorAt<YellowKey>(currentPosition));
                 Debug.Log(currentPosition);
             }
+
+            if (deltaTime > 0)
+            {
+                UserInterface.Singleton.SetText("Ez a inventory", UserInterface.TextPosition.TopLeft);
+            }
         }
 
         public override bool OnCollision(Actor anotherActor)
@@ -60,17 +65,17 @@ namespace DungeonCrawl.Actors.Characters
 
         public static void PickUpItem(Item item)
         {
-            if (!Inventory.ContainsKey("YellowKey"))
+            if (!Inventory.ContainsKey(item.DefaultName))
             {
                 //var pickedItem = item.Clone();
                 Debug.Log("ifág");
-                Inventory["YellowKey"] = item;
+                Inventory[item.DefaultName] = item;
                 ActorManager.Singleton.DestroyActor(item);
                 UserInterface.Singleton.SetText(String.Empty, UserInterface.TextPosition.BottomRight);
                 //Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
                 Debug.Log(YellowKey.Owned);
             }
-            else if (Inventory.ContainsKey("YellowKey"))
+            else if (Inventory.ContainsKey(item.DefaultName))
             {
                 //var pickedItem = item.Clone();
                 Debug.Log("elszág");
