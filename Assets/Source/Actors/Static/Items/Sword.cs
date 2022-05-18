@@ -13,6 +13,7 @@ namespace Assets.Source.Actors.Static.Items
         public override int DefaultSpriteId => 417;
         public override string DefaultName => "Sword";
         public override int Z => -1;
+        public override int Owned { get; set; } = 1;
 
         public override bool OnCollision(Actor anotherActor)
         {

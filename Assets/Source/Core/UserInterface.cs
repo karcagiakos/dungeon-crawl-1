@@ -55,13 +55,13 @@ namespace Assets.Source.Core
             _textComponents[(int)textPosition].text = text;
         }
 
-        public void DisplayInventory(Dictionary<string, object> inventory)
+        public void DisplayInventory(Dictionary<string, int> inventory)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("Inventory");
+            sb.AppendLine("Inventory");
             foreach (var item in inventory)
             {
-                sb.AppendLine(item.Key + item.Value.Owned);
+                sb.AppendLine(item.Key + "-" + item.Value);
             }
 
             SetText(sb.ToString(), TextPosition.TopLeft);

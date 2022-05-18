@@ -9,13 +9,15 @@ namespace Assets.Source.Actors.Static.Items
 {
     public abstract class Item : Actor
     {
+        public abstract int Owned { get; set; }
         public override int DefaultSpriteId { get; }
         public override string DefaultName { get; }
 
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
+        //public object Clone()
+        //{
+        //    return this.MemberwiseClone();
+        //}
+
 
     }
 }
