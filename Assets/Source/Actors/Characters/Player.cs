@@ -60,26 +60,25 @@ namespace DungeonCrawl.Actors.Characters
 
         public static void PickUpItem(Item item)
         {
-            bool isInInventory = Inventory.ContainsKey(item);
-            if (!isInInventory)
+            if (item.DefaultName == "YellowKey" && Inventory.Count == 0)
             {
-                var pickedItem = item.Clone();
+                //var pickedItem = item.Clone();
                 Debug.Log("ifág");
-                Inventory[pickedItem] = 1;
+                Inventory["YellowKey"] = item;
                 ActorManager.Singleton.DestroyActor(item);
                 UserInterface.Singleton.SetText(String.Empty, UserInterface.TextPosition.BottomRight);
-                Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
-                Debug.Log(Inventory[pickedItem]);
+                //Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
+                Debug.Log(YellowKey.Owned);
             }
-            else
+            else if (item.DefaultName == "YellowKey" && Inventory.Count >= 1)
             {
-                var pickedItem = item.Clone();
+                //var pickedItem = item.Clone();
                 Debug.Log("elszág");
-                Inventory[pickedItem]++;
+                YellowKey.Owned++;
                 ActorManager.Singleton.DestroyActor(item);
                 UserInterface.Singleton.SetText(String.Empty, UserInterface.TextPosition.BottomRight);
-                Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
-                Debug.Log(Inventory[pickedItem]);
+                //Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
+                Debug.Log(YellowKey.Owned);
             }
         }
 
@@ -88,7 +87,7 @@ namespace DungeonCrawl.Actors.Characters
         /// <summary>
         /// Ennek listának kellene lennie
         /// </summary>
-        public static Dictionary<object, int> Inventory { get; set; } = new Dictionary<object, int>();
+        public static Dictionary<string, object> Inventory { get; set; } = new Dictionary<string, object>();
         public override int DefaultSpriteId => 24;
         public override string DefaultName => "Player";
     }
