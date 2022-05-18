@@ -60,7 +60,7 @@ namespace DungeonCrawl.Actors.Characters
 
         public static void PickUpItem(Item item)
         {
-            if (item.DefaultName == "YellowKey" && Inventory.Count == 0)
+            if (!Inventory.ContainsKey("YellowKey"))
             {
                 //var pickedItem = item.Clone();
                 Debug.Log("ifág");
@@ -70,7 +70,7 @@ namespace DungeonCrawl.Actors.Characters
                 //Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
                 Debug.Log(YellowKey.Owned);
             }
-            else if (item.DefaultName == "YellowKey" && Inventory.Count >= 1)
+            else if (Inventory.ContainsKey("YellowKey"))
             {
                 //var pickedItem = item.Clone();
                 Debug.Log("elszág");
