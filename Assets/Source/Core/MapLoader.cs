@@ -2,6 +2,7 @@
 using DungeonCrawl.Actors.Static;
 using System;
 using System.Text.RegularExpressions;
+using Assets.Source.Actors.Static;
 using Assets.Source.Actors.Static.Items;
 using UnityEngine;
 
@@ -69,6 +70,10 @@ namespace DungeonCrawl.Core
                 case 'S':
                     ActorManager.Singleton.Spawn<Sword>(position);
                     ActorManager.Singleton.Spawn<Floor>(position);
+                    break;
+                case '/':
+                    ActorManager.Singleton.Spawn<ClosedDoor>(position);
+                    ActorManager.Singleton.Spawn<ClosedDoor>(position);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

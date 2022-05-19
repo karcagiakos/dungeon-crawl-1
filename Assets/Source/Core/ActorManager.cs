@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DungeonCrawl.Actors;
+using DungeonCrawl.Actors.Characters;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -42,6 +43,18 @@ namespace DungeonCrawl.Core
         {
             return _allActors.FirstOrDefault(actor => actor.Detectable && actor.Position == position);
         }
+
+        //public Actor GetPlayer()
+        //{
+        //    foreach (Actor actor in _allActors)
+        //    {
+        //        if (actor is Player)
+        //        {
+        //            return actor;
+        //        }
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         ///     Returns actor of specific subclass present at given position (returns null if no actor is present)
