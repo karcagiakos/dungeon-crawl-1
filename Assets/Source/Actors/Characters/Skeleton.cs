@@ -1,7 +1,10 @@
-﻿using Assets.Source.Actors.Static.Items;
+﻿using System;
+using Assets.Source.Actors.Static.Items;
 using Assets.Source.Core;
 using DungeonCrawl.Core;
 using UnityEngine;
+using System.Threading.Tasks;
+using Random = UnityEngine.Random;
 
 namespace DungeonCrawl.Actors.Characters
 {
@@ -19,10 +22,30 @@ namespace DungeonCrawl.Actors.Characters
 
         public override bool OnCollision(Actor anotherActor)
         {
-            ApplyDamage(Player.WeaponDamage);
-            Debug.Log(Health);
+            if (anotherActor is Player)
+            {
+                ApplyDamage(Player.WeaponDamage);
+                UserInterface.Singleton.SetText($"Enemy's health: {Health}", UserInterface.TextPosition.BottomRight);
+                if (Health <= 0)
+                {
+                    UserInterface.Singleton.SetText("Enemy is dead", UserInterface.TextPosition.BottomRight);
+                }
+
+                
+            }
+
             return false;
         }
+
+        public void AttackPlayer(Direction direction)
+        {
+            var vector = direction.ToVector();
+            (int x, int y) targetPosition = (Position.x + vector.x, Position.y + vector.y);
+
+            var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
+
+        }
+
 
         protected override void OnDeath()
         {

@@ -64,6 +64,7 @@ namespace DungeonCrawl.Actors.Characters
 
             if (deltaTime > 0)
             {
+
                 UserInterface.Singleton.SetText("Health: " + Health, UserInterface.TextPosition.BottomLeft);
 
                 if (Inventory is null)
@@ -79,8 +80,16 @@ namespace DungeonCrawl.Actors.Characters
 
         public override bool OnCollision(Actor anotherActor)
         {
-            ApplyDamage(Skeleton.Damage);
-            Debug.Log($"Player health: {this.Health}");
+            if (anotherActor is Skeleton)
+            {
+                ApplyDamage(2);
+
+                if (Health <= 0)
+                {
+                    UserInterface.Singleton.SetText("You are dead", UserInterface.TextPosition.BottomRight);
+                }
+
+            }
             return false;
         }
 
@@ -103,37 +112,20 @@ namespace DungeonCrawl.Actors.Characters
 
             if (!Inventory.ContainsKey(item.DefaultName))
             {
-                //var pickedItem = item.Clone();
                 Debug.Log("ifág");
                 Inventory.Add(item.DefaultName, item.Owned);
                 ActorManager.Singleton.DestroyActor(item);
                 UserInterface.Singleton.SetText(String.Empty, UserInterface.TextPosition.BottomRight);
-                //Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
-                Debug.Log(item.Owned);
             }
             else if (Inventory.ContainsKey(item.DefaultName))
             {
-                //var pickedItem = item.Clone();
                 Debug.Log("elszág");
                 Inventory[item.DefaultName]++;
                 item.Owned++;
                 ActorManager.Singleton.DestroyActor(item);
                 UserInterface.Singleton.SetText(String.Empty, UserInterface.TextPosition.BottomRight);
-                //Inventory.Select(i => $"{i.Key}: {i.Value}").ToList().ForEach(Debug.Log);
-                Debug.Log(item.Owned);
             }
         }
-
-        //public void AttackMonster(Direction direction)
-        //{
-        //    var vector = direction.ToVector();
-        //    (int x, int y) targetPosition = (Position.x + vector.x, Position.y + vector.y);
-
-        //    var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
-
-
-        //}
-
 
 
     }
