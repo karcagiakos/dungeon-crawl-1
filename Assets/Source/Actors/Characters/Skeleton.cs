@@ -16,7 +16,7 @@ namespace DungeonCrawl.Actors.Characters
         public Skeleton()
         {
             SetHp(20);
-            SetDamage(2);
+            //SetDamage(2);
         }
 
 
@@ -31,20 +31,23 @@ namespace DungeonCrawl.Actors.Characters
                     UserInterface.Singleton.SetText("Enemy is dead", UserInterface.TextPosition.BottomRight);
                 }
 
-                
             }
 
             return false;
         }
 
-        public void AttackPlayer(Direction direction)
-        {
-            var vector = direction.ToVector();
-            (int x, int y) targetPosition = (Position.x + vector.x, Position.y + vector.y);
+        //public void AttackPlayer(Direction direction)
+        //{
+        //    var vector = direction.ToVector();
+        //    (int x, int y) targetPosition = (Position.x + vector.x, Position.y + vector.y);
 
-            var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
+        //    var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
 
-        }
+        //    if (actorAtTargetPosition is Skeleton)
+        //    {
+        //        ApplyDamage(2);
+        //    }
+        //}
 
 
         protected override void OnDeath()

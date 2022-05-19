@@ -25,32 +25,32 @@ namespace DungeonCrawl.Actors.Characters
             SetDamage(WeaponDamage);
         }
 
-
-
-
-
         protected override void OnUpdate(float deltaTime)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
+                Attack(Direction.Up);
                 // Move up
                 TryMove(Direction.Up);
             }
 
             if (Input.GetKeyDown(KeyCode.S))
             {
+                Attack(Direction.Down);
                 // Move down
                 TryMove(Direction.Down);
             }
 
             if (Input.GetKeyDown(KeyCode.A))
             {
+                Attack(Direction.Left);
                 // Move left
                 TryMove(Direction.Left);
             }
 
             if (Input.GetKeyDown(KeyCode.D))
             {
+                Attack(Direction.Right);
                 // Move right
                 TryMove(Direction.Right);
             }
@@ -82,8 +82,6 @@ namespace DungeonCrawl.Actors.Characters
         {
             if (anotherActor is Skeleton)
             {
-                ApplyDamage(2);
-
                 if (Health <= 0)
                 {
                     UserInterface.Singleton.SetText("You are dead", UserInterface.TextPosition.BottomRight);
@@ -127,6 +125,18 @@ namespace DungeonCrawl.Actors.Characters
             }
         }
 
+        public void Attack(Direction direction)
+        {
+            var vector = direction.ToVector();
+            (int x, int y) targetPosition = (Position.x + vector.x, Position.y + vector.y);
+
+            var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
+
+            if (actorAtTargetPosition is Skeleton)
+            {
+                ApplyDamage(2);
+            }
+        }
 
     }
 }
