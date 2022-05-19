@@ -17,11 +17,11 @@ namespace DungeonCrawl.Actors.Characters
         public static Dictionary<string, int> Inventory { get; set; } = new Dictionary<string, int>();
         public override int DefaultSpriteId => 24;
         public override string DefaultName => "Player";
-        public static int WeaponDamage { get; set; } = 0;
+        public static int WeaponDamage { get; set; } = 5;
 
         public Player()
         {
-            SetHp(100);
+            SetHp(20);
             SetDamage(WeaponDamage);
         }
 
@@ -79,8 +79,11 @@ namespace DungeonCrawl.Actors.Characters
 
         public override bool OnCollision(Actor anotherActor)
         {
+            ApplyDamage(Skeleton.Damage);
+            Debug.Log($"Player health: {this.Health}");
             return false;
         }
+
 
         protected override void OnDeath()
         {
@@ -120,6 +123,16 @@ namespace DungeonCrawl.Actors.Characters
                 Debug.Log(item.Owned);
             }
         }
+
+        //public void AttackMonster(Direction direction)
+        //{
+        //    var vector = direction.ToVector();
+        //    (int x, int y) targetPosition = (Position.x + vector.x, Position.y + vector.y);
+
+        //    var actorAtTargetPosition = ActorManager.Singleton.GetActorAt(targetPosition);
+
+
+        //}
 
 
 
