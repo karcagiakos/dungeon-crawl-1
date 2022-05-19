@@ -70,6 +70,11 @@ namespace DungeonCrawl.Actors
             return false;
         }
 
+        public virtual void EnterNextMap()
+        {
+
+        }
+
         /// <summary>
         ///     Invoked every animation frame, can be used for movement, character logic, etc
         /// </summary>

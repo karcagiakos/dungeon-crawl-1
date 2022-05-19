@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using Assets.Source.Actors.Static;
 using Assets.Source.Actors.Static.Items;
 using Assets.Source.Core;
 using DungeonCrawl.Core;
@@ -76,6 +77,7 @@ namespace DungeonCrawl.Actors.Characters
                     UserInterface.Singleton.DisplayInventory(Inventory);
                 }
             }
+            CameraController.Singleton.Position = (ActorManager.Singleton.GetPlayer().Position.x, ActorManager.Singleton.GetPlayer().Position.y);
         }
 
         public override bool OnCollision(Actor anotherActor)
@@ -86,7 +88,10 @@ namespace DungeonCrawl.Actors.Characters
                 {
                     UserInterface.Singleton.SetText("You are dead", UserInterface.TextPosition.BottomRight);
                 }
-
+            }
+            else if (anotherActor is OpenDoor)
+            {
+                EnterNextMap();
             }
             return false;
         }

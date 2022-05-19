@@ -1,6 +1,7 @@
 ﻿using DungeonCrawl.Actors;
 using DungeonCrawl.Actors.Characters;
 using DungeonCrawl.Core;
+using JetBrains.Annotations;
 
 namespace Assets.Source.Actors.Static
 {
@@ -9,13 +10,23 @@ namespace Assets.Source.Actors.Static
         public override int DefaultSpriteId => 147;
         public override string DefaultName => "OpenDoor";
 
+        public bool isOpen;
+
         public override bool OnCollision(Actor anotherActor)
         {
-
-            //System.Threading.Thread.Sleep(3000);
+            isOpen = true;
+            EnterNextMap();
             return true;
         }
 
+        public override void EnterNextMap()
+        {
+            if (isOpen)
+            {
+                ActorManager.Singleton.DestroyAllActors();
+                MapLoader.LoadMap(2);
+            }
 
+        }
     }
 }
